@@ -1,0 +1,41 @@
+/* Select all spans that are immediate children of buttons */
+
+button>span {
+  font-size: 2.5rem;
+}
+
+* {
+  font-family: 'Mulish', sans-serif;
+}
+
+#plans {}
+
+.tableBlock, .headerBlock {
+  height: 100px;
+  background-color: aqua;
+  border: black solid 3px;
+}
+
+.header, .timeCell {
+  display: flex;
+}
+
+.headerBlock {
+  text-align: center;
+  margin-top: auto;
+  margin-bottom: auto;
+}
+
+.timeStyle {
+  font-size: larger;
+  text-align: left;
+  margin-top: auto;
+  margin-bottom: auto;
+  font-family: 'Mulish', sans-serif;
+}
+
+.saveCell {
+  align-content: center;
+  background-image: url('https://cdn3.iconfinder.com/data/icons/vector-icons-for-mobile-apps-2/512/Save_black-512.png');
+  background-size: contain;
+}
