@@ -15,7 +15,7 @@
 </head>
 
 <body>
-  <header class="jumbotron">
+  <header class="jumbotron jumboColor">
     <h1 class="display-3">Work Day Scheduler</h1>
     <p class="lead">A simple calendar app for scheduling your work day</p>
     <p id="currentDay" class="lead"></p>
@@ -40,7 +40,7 @@
     <!-- 9AM row -->
     <div class="row" id="1">
       <section class="tableBlock timeCell col-sm-2">
-         <p class="timeStyle">9 AM</p>
+         <p class="timeStyle" id="9AM">9 AM</p>
       </section>
 
       <input type="text" class="tableBlock inputCell col-sm-9" id="inputCell1">
@@ -50,7 +50,7 @@
 
     <div class="row" id="2">
       <section class="tableBlock timeCell col-sm-2">
-        <p class="timeStyle">10 AM</p>
+        <p class="timeStyle" id="10AM">10 AM</p>
       </section>
     
       <input type="text" class="tableBlock inputCell col-sm-9" id="inputCell2">
@@ -60,7 +60,7 @@
 
     <div class="row" id="3">
       <section class="tableBlock timeCell col-sm-2">
-        <p class="timeStyle">11 AM</p>
+        <p class="timeStyle" id="11AM">11 AM</p>
       </section>
     
       <input type="text" class="tableBlock inputCell col-sm-9" id="inputCell3">
@@ -70,7 +70,7 @@
 
     <div class="row" id="4">
       <section class="tableBlock timeCell col-sm-2">
-        <p class="timeStyle">12 AM</p>
+        <p class="timeStyle" id="12PM">12 PM</p>
       </section>
     
       <input type="text" class="tableBlock inputCell col-sm-9" id="inputCell4">
@@ -80,7 +80,7 @@
 
     <div class="row" id="5">
       <section class="tableBlock timeCell col-sm-2">
-        <p class="timeStyle">1 PM</p>
+        <p class="timeStyle" id="1PM">1 PM</p>
       </section>
     
       <input type="text" class="tableBlock inputCell col-sm-9" id="inputCell5">
@@ -90,7 +90,7 @@
 
     <div class="row" id="6">
       <section class="tableBlock timeCell col-sm-2">
-        <p class="timeStyle">2 PM</p>
+        <p class="timeStyle" id="2PM">2 PM</p>
       </section>
     
       <input type="text" class="tableBlock inputCell col-sm-9" id="inputCell6">
@@ -100,7 +100,7 @@
 
     <div class="row" id="7">
       <section class="tableBlock timeCell col-sm-2">
-        <p class="timeStyle">3 PM</p>
+        <p class="timeStyle" id="3PM">3 PM</p>
       </section>
     
       <input type="text" class="tableBlock inputCell col-sm-9" id="inputCell7">
@@ -110,7 +110,7 @@
 
     <div class="row" id="8">
       <section class="tableBlock timeCell col-sm-2">
-        <p class="timeStyle">4 PM</p>
+        <p class="timeStyle" id="4PM">4 PM</p>
       </section>
     
       <input type="text" class="tableBlock inputCell col-sm-9" id="inputCell8">
@@ -118,9 +118,9 @@
       <section class="tableBlock saveCell col-sm-1" id="saveCell8"></section>
     </div>
 
-    <div class="row" id="9">
+    <div class="row bottomRow" id="9">
       <section class="tableBlock timeCell col-sm-2">
-        <p class="timeStyle">5PM</p>
+        <p class="timeStyle" id="5PM">5PM</p>
       </section>
     
       <input type="text" class="tableBlock inputCell col-sm-9" id="inputCell9">
@@ -148,7 +148,7 @@
 
     $(".saveCell").mouseout(event => {
       let hoveringCell = ('#' + event.target.id)
-      $(`${hoveringCell}`).css("background-color", "aqua")
+      $(`${hoveringCell}`).css("background-color", "wheat")
     })
 
     $('.saveCell').click(event => {
@@ -158,6 +158,22 @@
         storeItems(response, place)
       })
      
+      // let hour = moment().format("hA")
+      var hour1 = "16:00:00";
+      var hour = moment(hour1, "HH:mm:ss").format("hA");
+      let hourFound = false
+
+
+        // if (index === hour) {
+        //   hourFound = true
+        // }
+
+        // if (!hourfound) {
+        //   $(`${index}`).addClass('tableBlockC')
+        // }
+        
+      
+
    // console.log(moment().format("ddd, h:mmA"))
   function storeItems(submission, location) {
 
@@ -168,10 +184,112 @@
   function printSave() {
     for (let i = 1; i < 10; i++) {
       let index = '#inputCell' + i
+      
+      switch (i) {
+        case 1:
+          console.log(hour)
+          if (hour === '9AM') {
+            $(`${index}`).css('background-color', 'rgb(2, 153, 153)')
+            hourFound = true
+          } else if (hourFound) {
+            $(`${index}`).css('background-color', 'aqua')
+          } else {
+            $(`${index}`).css('background-color', 'rgb(175, 255, 255)')
+          }
+          break;
+      
+        case 2:
+          if (hour === '10AM') {
+            $(`${index}`).css('background-color', 'rgb(2, 153, 153)')
+            hourFound = true
+          } else if (hourFound) {
+            $(`${index}`).css('background-color', 'aqua')
+          } else {
+            $(`${index}`).css('background-color', 'rgb(175, 255, 255)')
+          }
+          break;
+
+        case 3:
+          if (hour === '11AM') {
+            $(`${index}`).css('background-color', 'rgb(2, 153, 153)')
+            hourFound = true
+          } else if (hourFound) {
+            $(`${index}`).css('background-color', 'aqua')
+          } else {
+            $(`${index}`).css('background-color', 'rgb(175, 255, 255)')
+          }
+          break;
+
+          case 4:
+          if (hour === '12PM') {
+            $(`${index}`).css('background-color', 'rgb(2, 153, 153)')
+            hourFound = true
+          } else if (hourFound) {
+            $(`${index}`).css('background-color', 'aqua')
+          } else {
+            $(`${index}`).css('background-color', 'rgb(175, 255, 255)')
+          }
+          break;
+          case 5:
+          if (hour === '1PM') {
+            $(`${index}`).css('background-color', 'rgb(2, 153, 153)')
+            hourFound = true
+          } else if (hourFound) {
+            $(`${index}`).css('background-color', 'aqua')
+          } else {
+            $(`${index}`).css('background-color', 'rgb(175, 255, 255)')
+          }
+          break;
+          case 6:
+          if (hour === '2PM') {
+            $(`${index}`).css('background-color', 'rgb(2, 153, 153)')
+            hourFound = true
+          } else if (hourFound) {
+            $(`${index}`).css('background-color', 'aqua')
+          } else {
+            $(`${index}`).css('background-color', 'rgb(175, 255, 255)')
+          }
+          break;
+          case 7:
+          if (hour === '3PM') {
+            $(`${index}`).css('background-color', 'rgb(2, 153, 153)')
+            hourFound = true
+          } else if (hourFound) {
+            $(`${index}`).css('background-color', 'aqua')
+          } else {
+            $(`${index}`).css('background-color', 'rgb(175, 255, 255)')
+          }
+          break;
+          case 8:
+          if (hour === '4PM') {
+            $(`${index}`).css('background-color', 'rgb(2, 153, 153)')
+            hourFound = true
+          } else if (hourFound) {
+            $(`${index}`).css('background-color', 'aqua')
+          } else {
+            $(`${index}`).css('background-color', 'rgb(175, 255, 255)')
+          }
+          break;
+          case 9:
+          if (hour === '5PM') {
+            $(`${index}`).css('background-color', 'rgb(2, 153, 153)')
+            hourFound = true
+          } else if (hourFound) {
+            $(`${index}`).css('background-color', 'aqua')
+          } else {
+            $(`${index}`).css('background-color', 'rgb(175, 255, 255)')
+          }
+          break;
+      }
+
       $(`${index}`).val(localStorage.getItem(`${index}`))
 
+      
+      
+      
+      
     }
-    }
+  }
   </script>
 </body>
 

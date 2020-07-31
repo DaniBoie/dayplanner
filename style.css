@@ -8,22 +8,21 @@ button>span {
   font-family: 'Mulish', sans-serif;
 }
 
-#plans {}
-
 .tableBlock, .headerBlock {
   height: 100px;
-  background-color: aqua;
+  background-color: rgb(2, 153, 153);
   border: black solid 3px;
 }
 
 .header, .timeCell {
   display: flex;
+  background-color: wheat;
 }
 
 .headerBlock {
   text-align: center;
-  margin-top: auto;
-  margin-bottom: auto;
+  margin: auto;
+  background-color: wheat;
 }
 
 .timeStyle {
@@ -40,4 +39,15 @@ button>span {
   background-size: contain;
   background-repeat: no-repeat;
   background-position: center;
+  background-color: wheat;
+}
+
+.jumboColor {
+  background-color: wheat;
+  text-align: center;
+  border-bottom: 3px black solid;
+}
+
+ .bottomRow {
+  margin-bottom: 20px;
 }
