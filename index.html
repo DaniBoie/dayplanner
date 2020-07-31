@@ -38,24 +38,108 @@
     </header>
 
     <!-- 9AM row -->
-    <div class="row">
+    <div class="row" id="1">
       <section class="tableBlock timeCell col-sm-2">
          <p class="timeStyle">9 AM</p>
       </section>
 
-      <input type="text" class="tableBlock inputCell col-sm-9" id="plans">
+      <input type="text" class="tableBlock inputCell col-sm-9" id="inputCell1">
 
-      <section class="tableBlock saveCell col-sm-1" id="saveCell1"></section>
+      <section class="tableBlock saveCell col-sm-1" id="saveCell1" ></section>
     </div>
 
+    <div class="row" id="2">
+      <section class="tableBlock timeCell col-sm-2">
+        <p class="timeStyle">10 AM</p>
+      </section>
+    
+      <input type="text" class="tableBlock inputCell col-sm-9" id="inputCell2">
+    
+      <section class="tableBlock saveCell col-sm-1" id="saveCell2" ></section>
+    </div>
 
+    <div class="row" id="3">
+      <section class="tableBlock timeCell col-sm-2">
+        <p class="timeStyle">11 AM</p>
+      </section>
+    
+      <input type="text" class="tableBlock inputCell col-sm-9" id="inputCell3">
+    
+      <section class="tableBlock saveCell col-sm-1" id="saveCell3"></section>
+    </div>
 
+    <div class="row" id="4">
+      <section class="tableBlock timeCell col-sm-2">
+        <p class="timeStyle">12 AM</p>
+      </section>
+    
+      <input type="text" class="tableBlock inputCell col-sm-9" id="inputCell4">
+    
+      <section class="tableBlock saveCell col-sm-1" id="saveCell4"></section>
+    </div>
+
+    <div class="row" id="5">
+      <section class="tableBlock timeCell col-sm-2">
+        <p class="timeStyle">1 PM</p>
+      </section>
+    
+      <input type="text" class="tableBlock inputCell col-sm-9" id="inputCell5">
+    
+      <section class="tableBlock saveCell col-sm-1" id="saveCell5"></section>
+    </div>
+
+    <div class="row" id="6">
+      <section class="tableBlock timeCell col-sm-2">
+        <p class="timeStyle">2 PM</p>
+      </section>
+    
+      <input type="text" class="tableBlock inputCell col-sm-9" id="inputCell6">
+    
+      <section class="tableBlock saveCell col-sm-1" id="saveCell6"></section>
+    </div>
+
+    <div class="row" id="7">
+      <section class="tableBlock timeCell col-sm-2">
+        <p class="timeStyle">3 PM</p>
+      </section>
+    
+      <input type="text" class="tableBlock inputCell col-sm-9" id="inputCell7">
+    
+      <section class="tableBlock saveCell col-sm-1" id="saveCell7"></section>
+    </div>
+
+    <div class="row" id="8">
+      <section class="tableBlock timeCell col-sm-2">
+        <p class="timeStyle">4 PM</p>
+      </section>
+    
+      <input type="text" class="tableBlock inputCell col-sm-9" id="inputCell8">
+    
+      <section class="tableBlock saveCell col-sm-1" id="saveCell8"></section>
+    </div>
+
+    <div class="row" id="9">
+      <section class="tableBlock timeCell col-sm-2">
+        <p class="timeStyle">5PM</p>
+      </section>
+    
+      <input type="text" class="tableBlock inputCell col-sm-9" id="inputCell9">
+    
+      <section class="tableBlock saveCell col-sm-1" id="saveCell9"></section>
+    </div>
   </main>
 
   <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
 
   <script>
+
+    window.onload = printSave;
+
+    $('#currentDay').text(`${moment().format("ddd, h:mmA")}`)
+    setInterval(() => {
+      $('#currentDay').text(`${moment().format("ddd, h:mmA")}`)
+    }, 20000);
 
     $('.saveCell').hover(event => {
       let hoveringCell= ('#' + event.target.id)
@@ -67,14 +151,27 @@
       $(`${hoveringCell}`).css("background-color", "aqua")
     })
 
-      $('#currentDay').text(`${moment().format("ddd, h:mmA")}`)
-      setInterval(() => {
-        $('#currentDay').text(`${moment().format("ddd, h:mmA")}`)
-      }, 20000);
-      
+    $('.saveCell').click(event => {
+        let place = ('#inputCell' + event.target.parentNode.id)
+        let response = $(`${place}`).val()
+        $(`${place}`).val(response)
+        storeItems(response, place)
+      })
+     
+   // console.log(moment().format("ddd, h:mmA"))
+  function storeItems(submission, location) {
 
+      let input1 = localStorage.getItem(`${location}`) || []
+      input1[0] = submission
+      localStorage.setItem(`${location}`, submission)
+  }
+  function printSave() {
+    for (let i = 1; i < 10; i++) {
+      let index = '#inputCell' + i
+      $(`${index}`).val(localStorage.getItem(`${index}`))
 
-        // console.log(moment().format("ddd, h:mmA"))
+    }
+    }
   </script>
 </body>
 
